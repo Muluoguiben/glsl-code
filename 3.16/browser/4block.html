@@ -1,0 +1,34 @@
+<head>
+	<style>
+		.block {
+			width: 100px;
+			height: 100px;
+			top: 100px;
+			left: 100px;
+			transform-origin: 50% 50%;
+			position: absolute;
+			background: blue;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="block"></div>
+	<script type="module">
+			import { Animator } from '../common/lib/animator/index.js';
+			const block = document.querySelector('.block');
+			const animator = new Animator({ duration: 3000 });
+			document.addEventListener('click', () => {
+				console.log('working');
+				animator.animate({ el: block, start: 100, end: 800 }, ({ target: { el, start, end }, timing: { p } }) => {
+					// p = p ** 2 // 匀加速运动
+					// p = p * (2 - p) // 匀减速运动
+					p = p * p * (3.0 - 2.0 * p ) // 实现smoothstep 插值效果
+					const left = start * (1 - p) + end * p; // 插值
+					el.style.left = `${left}px`;
+				});
+			});
+	</script>
+</body>
+
+</html>

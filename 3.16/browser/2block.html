@@ -1,0 +1,33 @@
+<head>
+	<style>
+		.block {
+			width: 100px;
+			height: 100px;
+			top: 100px;
+			left: 100px;
+			transform-origin: 50% 50%;
+			position: absolute;
+			background: blue;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="block"></div>
+	<script>
+			const block = document.querySelector('.block');
+			const startAngle = 0;
+			const T = 2000;
+			let startTime = null;
+			function update() {
+				startTime = startTime == null ? Date.now() : startTime;
+				const p = (Date.now() - startTime) / T;
+				const angle = startAngle + p * 360;
+				block.style.transform = `rotate(${angle}deg)`;
+				requestAnimationFrame(update);
+			}
+			update();
+	</script>
+</body>
+
+</html>

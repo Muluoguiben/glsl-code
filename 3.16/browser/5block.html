@@ -1,0 +1,33 @@
+<head>
+	<style>
+		.block {
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: 100px;
+      left: 100px;
+      background: blue;
+      flex-shrink: 0;
+      transform-origin: 50% 50%;
+    }
+    .animate {
+      animation: mymove 3s cubic-bezier(0.5, -1.5, 0.5, 2.5) forwards;
+    }
+    @keyframes mymove {
+      from {left: 100px}
+      to {left: 400px}
+    }
+	</style>
+</head>
+
+<body>
+	<div class="block"></div>
+	<script type="module">
+		const block = document.querySelector('.block');
+		document.addEventListener('click', () => {
+			block.className = 'block animate';
+		}, { once: true });
+	</script>
+</body>
+
+</html>

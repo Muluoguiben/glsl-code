@@ -1,0 +1,26 @@
+<head>
+	<style>
+		.block {
+			width: 100px;
+			height: 100px;
+			top: 100px;
+			left: 100px;
+			transform-origin: 50% 50%;  /* 移动原点 */
+			position: absolute;
+			background: blue;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="block"></div>
+	<script>
+		const block = document.querySelector('.block');
+		let rotation = 0;
+		requestAnimationFrame(function update() {
+			block.style.transform = `rotate(${rotation++}deg)`;
+			requestAnimationFrame(update);
+		});
+	</script>
+</body>
+</html>
